@@ -16,4 +16,4 @@ jobs:
       - run: echo "${{SECRETS.GITHUB_TOKEN}}" | podman login -u "${{github.actor}}" --password-stdin ghcr.io
       - run: podman build -t ghcr.io/charles4090/trisquel-container:latest .
       - run: podman push ghcr.io/charles4090/trisquel-container:latest
-        if: github.event_name != "pull_request"
+        if: github.event_name != 'pull_request'
