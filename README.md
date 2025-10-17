@@ -2,6 +2,10 @@
 
 Unofficial container images for Trisquel.
 
+## Using
+
+You can use [this container image](https://github.com/charles4090/trisquel-container/pkgs/container/trisquel-container).
+
 ## Building
 
 ```sh
