@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - run: actions/checkout@v5
+      - uses: actions/checkout@v5
       - run: echo "${{SECRETS.GITHUB_TOKEN}}" | podman login -u "${{github.actor}}" --password-stdin ghcr.io
       - run: podman build -t ghcr.io/charles4090/trisquel-container:latest .
       - run: podman push ghcr.io/charles4090/trisquel-container:latest
