@@ -1,6 +1,6 @@
 FROM docker.io/pureos/pureos:crimson as builder
 
-ARG release=aramo
+ARG release
 
 RUN apt-get update && apt-get install debootstrap fakeroot -y && apt-get clean
 
