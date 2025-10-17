@@ -15,11 +15,12 @@ jobs:
       matrix:
         release:
           - aramo
+          - ecne
     permissions:
       packages: write
     steps:
       - uses: actions/checkout@v5
       - run: echo "${{SECRETS.GITHUB_TOKEN}}" | podman login -u "${{github.actor}}" --password-stdin ghcr.io
-      - run: podman build --build-arg=release="${{matrix.release}}" -t ghcr.io/charles4090/trisquel-container:latest .
-      - run: podman push ghcr.io/charles4090/trisquel-container:latest
+      - run: podman build --build-arg=release="${{matrix.release}}" -t "ghcr.io/charles4090/trisquel-container:${{matrix.release}}" .
+      - run: podman push "ghcr.io/charles4090/trisquel-container:${{matrix.release}}"
         if: github.event_name != 'pull_request'
