@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v5
       - run: echo "${{SECRETS.GITHUB_TOKEN}}" | podman login -u "${{github.actor}}" --password-stdin ghcr.io
       - run: podman build --no-cache --build-arg=suite="${{matrix.suite}}" -t "ghcr.io/charles25565/trisquel-container:${{matrix.suite}}" .
-      - name: Ensure the container has working bourne shell, `cat`, and correct suite
-        run: podman run "ghcr.io/charles25565/trisquel-container:${{matrix.suite}}" cat /etc/os-release | grep -q "${{matrix.suite}}"
+      - name: Ensure the container has working bourne shell, `cat`, and correct release
+        run: podman run "ghcr.io/charles25565/trisquel-container:${{matrix.suite}}" grep -q "${{matrix.suite}}" /etc/os-release
       - run: podman push "ghcr.io/charles25565/trisquel-container:${{matrix.suite}}"
         if: github.event_name != 'pull_request'
