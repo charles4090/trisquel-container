@@ -21,8 +21,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: echo "${{SECRETS.GITHUB_TOKEN}}" | podman login -u "${{github.actor}}" --password-stdin ghcr.io
-      - run: podman build --build-arg=suite="${{matrix.suite}}" -t "ghcr.io/charles25565/trisquel-container:${{matrix.suite}}" .
-      - name: Ensure the container has working `cat` and correct suite
+      - run: podman build --no-cache --build-arg=suite="${{matrix.suite}}" -t "ghcr.io/charles25565/trisquel-container:${{matrix.suite}}" .
+      - name: Ensure the container has working bourne shell, `cat`, and correct suite
         run: podman run "ghcr.io/charles25565/trisquel-container:${{matrix.suite}}" cat /etc/os-release | grep -q "${{matrix.suite}}"
       - run: podman push "ghcr.io/charles25565/trisquel-container:${{matrix.suite}}"
         if: github.event_name != 'pull_request'
