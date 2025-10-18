@@ -9,7 +9,7 @@ You can use [this container image](https://github.com/charles25565/trisquel-cont
 ## Building
 
 ```sh
-podman build --build-arg=release=RELEASE -t localhost/trisquel-container:latest .
+podman build --build-arg=suite=SUITE -t localhost/trisquel-container:latest .
 ```
 
-Make sure to replace `RELEASE` with the actual release, such as `aramo`.
+Make sure to replace `SUITE` with the actual suite, such as `aramo`.
